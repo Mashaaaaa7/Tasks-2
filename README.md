@@ -212,8 +212,12 @@ public class SecondBiggest {
 //8.Создайте метод, принимающий строку и маркерный символ. Верните строку, в которой символы,
 // находящиеся между парой маркерных символов, развернуты в обратном порядке.
 
-public class LocalReverse {
+//Создайте метод, принимающий строку и маркерный символ. Верните строку, в которой символы,
+// находящиеся между парой маркерных символов, развернуты в обратном порядке.
 
+import java.util.Arrays;
+
+public class localReverse {
     public static String localReverse(String str, char marker) {
         StringBuilder result = new StringBuilder();
         int startIndex = -1;
@@ -227,13 +231,13 @@ public class LocalReverse {
                     endIndex = i;
                     result.append(str.substring(0, startIndex));
                     result.append(new StringBuilder(str.substring(startIndex + 1, endIndex)).reverse().toString());
-                    result.append(str.substring(endIndex));
+                    result.append(str.substring(endIndex, str.length())); // Исправленный append
                     startIndex = -1; // Сброс для следующей пары маркеров
                 }
             }
         }
 
-        // Если остались необработанные символы
+        // Обработка случая, когда последняя пара маркеров не закрывается
         if (startIndex != -1) {
             result.append(str.substring(0, startIndex));
             result.append(new StringBuilder(str.substring(startIndex + 1)).reverse().toString());
@@ -243,16 +247,20 @@ public class LocalReverse {
 
         return result.toString();
     }
+
     public static void main(String[] args) {
-        String str1 = "bbabab";
-        char marker1 = 'a';
+        String str1 = "baobab";
+        char marker1 = 'b';
         System.out.println(localReverse(str1, marker1)); // Вывод: baboab
 
-        String str2 = "hello world";
-        char marker2 = 'l';
-        System.out.println(localReverse(str2, marker2)); // Вывод: hellow orld
+        String str2 = "Hello, I’m under the water, please help me";
+        char marker2 = 'e';
+        System.out.println(localReverse(str2, marker2)); // Вывод: Hednu m’I ,oller thetaw er, plesae hem ple
+
+
     }
 }
+
 
 //9.	Создайте метод, который принимает три целочисленных аргумента и возвращает количество целых чисел,
 // имеющих одинаковое значение.
